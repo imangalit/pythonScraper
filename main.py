@@ -10,7 +10,7 @@ from selenium.webdriver.common.by import By
 
 from PyPDF2 import PdfReader
 
-service_obj = Service('/Users/imangali/PycharmProjects/aiesecTestTask/chromedriver.exe')
+service_obj = Service('/chromedriver.exe') #path to file
 driver = webdriver.Chrome(service = service_obj)
 
 def writeToFile(id, text):
@@ -34,13 +34,11 @@ def parse(url, id):
         return
 
     driver.get(url)
-
-    #print(driver.find_element(By.XPATH, "/html/body").text)
     writeToFile(id, driver.find_element(By.XPATH, "/html/body").text)
 
 if __name__ == '__main__':
     data = pd.read_csv('unique_ids_with_links - unique_ids_with_links.csv')
-    for i in range(424, 425):
+    for i in range(0, 998):
         parse(data.iloc[i]['Privacy link'], data.iloc[i]['ID'])
         print(data.iloc[i]['ID'])
 
